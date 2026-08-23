@@ -8,9 +8,10 @@ Authors: TBD.
 </div>
 
 <div align="center">
-  <img src="Figures/fig1_teaser.jpg" width="1000">
-  <p><em>Two ways to ask a frozen VLM where it looked, judged at the model's own generated point (red pin). Dissecting internals yields an attention map that scores below chance at that point. Asking the sealed model 2K yes/no band questions yields a map that passes both faithfulness tests.</em></p>
+  <img src="Figures/fig1.png" width="1000">
+  <p><em>The AnswerMap operator. K row and K column yes/no band questions fill a K×K map through the outer product, a product of experts over independent coarse views. The expectation is the location read-out, the model stays sealed throughout.</em></p>
 </div>
+
 
 ---
 
@@ -22,24 +23,18 @@ Authors: TBD.
 - **The multigrid product**: probing several coprime grids and multiplying the maps is a product of experts, a soft intersection of independent coarse views. The {3,5} recipe is a drop-in replacement for the single 8×8 grid at identical 16-query cost (NSS 1.56 / AUC 0.853), and the composed curve is flat-topped across a five-fold budget range where single-grid refinement collapses.
 - **What the map buys you**: a label-free **object hallucination audit** on POPE (a low map maximum flags a hallucinated claim at ROC-AUC 0.833), **coordinate-free pointing** for coordinate-blind models (Lingshu-7B points better through its map, 57.7, than through its own generation, 46.7), and **self-conditioning** (crop where your own map points and answer again, fixing half of the model's failures against 38% for a random crop).
 - **Plug-and-play**: works out of the box with any HuggingFace `AutoModelForImageTextToText` backbone with a chat template. Evaluated on Qwen3-VL (4B / 8B / 30B-A3B), InternVL3.5-8B, and Lingshu-7B. No fine-tuning, no adapters.
+---
+
 
 ## News
 - [2026-08] Code released. arXiv preprint TBD.
+---
+
 
 ## Methodology
 <div align="center">
-  <img src="Figures/fig1_teaser.jpg" width="700">
-  <p><em>Two ways to ask a frozen VLM where it looked, judged at the model's own generated point (red pin). Dissecting internals yields an attention map that scores below chance at that point. Asking the sealed model 2K yes/no band questions yields a map that passes both faithfulness tests.</em></p>
-</div>
-
-<div align="center">
-  <img src="Figures/fig2_method.jpg" width="700">
-  <p><em>The AnswerMap operator. K row and K column yes/no band questions fill a K×K map through the outer product, a product of experts over independent coarse views. The crosshair is the expectation read-out, the flag is the maximum. The model stays sealed, first-token logits are the only thing that crosses.</em></p>
-</div>
-
-<div align="center">
-  <img src="Figures/fig3_tests.jpg" width="700">
-  <p><em>The two-test faithfulness protocol. Left, agreement: score the full map at the model's own generated point. Right, deletion: remove the map's top-mass region against a matched random region and re-ask. A self-report can be confabulated, the map is only called an explanation after passing both.</em></p>
+  <img src="Figures/fig2.png" width="700">
+  <p><em>The multigrid pipeline. Several coprime grids are probed independently, their per-cell maps upscaled to a common resolution, and aggregated by element-wise averaging, a product of experts over independent coarse views, to produce the final location read-out.</em></p>
 </div>
 
 ---
@@ -289,5 +284,3 @@ If you use AnswerMap in your research, please cite:
       url={https://arxiv.org/abs/TBD},
 }
 ```
-#   A n s w e r M a p  
- 
