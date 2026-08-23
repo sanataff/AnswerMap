@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+runs/
+data/
+figs/
+figures/assets/
+map.png
