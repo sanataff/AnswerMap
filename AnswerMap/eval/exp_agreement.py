@@ -24,7 +24,7 @@ Data: jsonl with {image, query}. Any pointing/grounding set works
 no GT needed -- the reference is the model's own generation.
 
 Usage:
-  python exp_agreement.py --data data/refcocog/refcocog.jsonl \
+  python -m AnswerMap.eval.exp_agreement --data data/refcocog/refcocog.jsonl \
       --images_dir data/refcocog/images \
       --methods probe1,probeMG,attn_best,attn_raw,attn_rollout,occlusion,random \
       --Ks 3,5 --attn_layer 15 --cache_dir $CD --limit 0
@@ -88,9 +88,9 @@ def main():
 
     methods = [m.strip() for m in a.methods.split(",") if m.strip()]
     Ks = tuple(int(x) for x in a.Ks.split(","))
-    from answermap import (Config, VLM, probe as probe_op, load_image,
+    from AnswerMap.answermap import (Config, VLM, probe as probe_op, load_image,
                            map_expectation, multigrid_map)
-    import baselines as B
+    import AnswerMap.baselines as B
 
     # any attention-family method needs eager (sdpa returns no attentions);
     # exact-membership check would miss attn_raw/attn_best/attn_rollout alone.
@@ -164,8 +164,8 @@ def main():
             devE[m].append(((e[0] - W / 2) / W, (e[1] - H / 2) / H))    # map dev
             ns, au = nss_auc(maps[m], g[0] / W, g[1] / H)
             nss[m].append(ns); auc[m].append(au)
-            # per-row values so analyze_runs.py and make_figures.py can
-            # work from the saved run without a GPU rerun
+            # per-row values so tables can be recomputed
+            # from the saved run without a GPU rerun
             rec[f"{m}_exp"] = [round(e[0], 1), round(e[1], 1)]
             rec[f"{m}_nss"] = round(ns, 3); rec[f"{m}_auc"] = round(au, 3)
         gdev.append(((g[0] - W / 2) / W, (g[1] - H / 2) / H))           # gen dev

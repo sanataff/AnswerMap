@@ -26,7 +26,7 @@ at its best layer"). Appendix figure: dev-corr by layer.
 Data: jsonl {image, query, ...} (RefCOCOg from prep_refcoco.py).
 
 Usage:
-  python exp_attn_layer_sweep.py --data data/refcocog/refcocog.jsonl \
+  python -m AnswerMap.eval.exp_attn_layer_sweep --data data/refcocog/refcocog.jsonl \
       --images_dir data/refcocog/images --limit 200 --cache_dir $CD
 """
 import argparse, json, os
@@ -57,8 +57,8 @@ def main():
     a = ap.parse_args()
 
     import torch
-    from answermap import Config, VLM, load_image
-    from baselines import generate_point, _grid_and_attn
+    from AnswerMap.answermap import Config, VLM, load_image
+    from AnswerMap.baselines import generate_point, _grid_and_attn
     cfg = Config(model_name=a.model_name, cache_dir=a.cache_dir,
                  max_side=a.gen_side, min_pixels=a.min_pixels,
                  attn="eager")                    # eager: attentions must exist

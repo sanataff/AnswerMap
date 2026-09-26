@@ -13,7 +13,7 @@ Data: jsonl {image, query, gt_box:[x0,y0,x1,y1]}  (prep_refcoco.py or
 prep_cave.py output).
 
 Usage:
-  python exp_pointing.py --data data/refcocog/refcocog.jsonl \
+  python -m AnswerMap.eval.exp_pointing --data data/refcocog/refcocog.jsonl \
       --images_dir data/refcocog/images --cache_dir $CD --limit 400
 """
 import argparse, json, os
@@ -40,9 +40,9 @@ def main():
     a = ap.parse_args()
 
     from functools import partial
-    from answermap import (Config, VLM, probe as probe_op, load_image,
+    from AnswerMap.answermap import (Config, VLM, probe as probe_op, load_image,
                            map_expectation)
-    import baselines as B
+    import AnswerMap.baselines as B
 
     cfg = Config(model_name=a.model_name, cache_dir=a.cache_dir, K=a.K,
                  max_side=a.max_side, min_pixels=a.min_pixels,

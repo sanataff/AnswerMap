@@ -24,7 +24,7 @@ Controls:
   sender_alone    the sender answering directly (reference)
 
 Usage (the paper run, self rows + cross-model rows in one pass):
-  python exp_selfconditioning.py --data data/textvqa/data.jsonl \
+  python -m AnswerMap.eval.exp_selfconditioning --data data/textvqa/data.jsonl \
       --images_dir data/textvqa/images \
       --sender Qwen/Qwen3-VL-30B-A3B-Instruct \
       --receiver Qwen/Qwen3-VL-4B-Instruct \
@@ -134,7 +134,7 @@ def main():
     ap.add_argument("--out", default="runs/selfcond.json")
     a = ap.parse_args()
 
-    from answermap import Config, VLM, probe as probe_op, load_image
+    from AnswerMap.answermap import Config, VLM, probe as probe_op, load_image
     rows_wanted = [r.strip() for r in a.rows.split(",") if r.strip()]
     MAP_ROWS = {"map_crop", "map_box", "map_dim", "map_text"}
 

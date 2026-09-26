@@ -14,16 +14,16 @@ xyxy or xywh boxes, lists of boxes (union bounding box), or polygons (bounding
 box of the points). Multiple annotator descriptions: the first non-empty one.
 
 Usage:
-  python prep_cave.py --src /path/to/cave_annotations.json \
+  python -m AnswerMap.prep.prep_cave --src /path/to/cave_annotations.json \
       --images_dir /path/to/cave/images --out_dir data/cave
 
 then (Test 1 on anomaly queries, agreement needs only image+query):
-  python exp_agreement.py --data data/cave/cave.jsonl --images_dir data/cave/images \
+  python -m AnswerMap.eval.exp_agreement --data data/cave/cave.jsonl --images_dir data/cave/images \
       --methods probe1,probeMG,attn_best,attn_raw,attn_rollout,occlusion,random \
       --Ks 3,5 --cache_dir $CD --limit 0 --out runs/agreement_cave.json
 
 and if gt_box came through, the coordinate-free pointing table:
-  python exp_pointing.py --data data/cave/cave.jsonl --images_dir data/cave/images \
+  python -m AnswerMap.eval.exp_pointing --data data/cave/cave.jsonl --images_dir data/cave/images \
       --cache_dir $CD --limit 0 --out runs/pointing_cave.json
 """
 import argparse, json, os, shutil

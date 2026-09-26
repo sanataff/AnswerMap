@@ -17,7 +17,7 @@ DETECTED and printed rather than assumed. If detection fails it prints the
 available columns and the first example's types instead of guessing.
 
 Usage:
-  python prep_vqa.py --dataset textvqa --limit 500 --out_dir data/textvqa \
+  python -m AnswerMap.prep.prep_vqa --dataset textvqa --limit 500 --out_dir data/textvqa \
       --cache_dir $CD
 """
 import argparse, json, os
@@ -165,7 +165,7 @@ def main():
         s = np.asarray(sizes)
         print(f"[prep] longest side: median {np.median(s):.0f}, "
               f"p10 {np.percentile(s,10):.0f}, p90 {np.percentile(s,90):.0f}")
-    print(f"\nnext (Test 2):\n  python exp_deletion.py --data {path} "
+    print(f"\nnext (Test 2):\n  python -m AnswerMap.eval.exp_deletion --data {path} "
           f"--images_dir {img_dir} \\\n"
           f"      --methods probe,raw_attention,raw_attention_best,rollout "
           f"--cache_dir <hf> --limit 400")

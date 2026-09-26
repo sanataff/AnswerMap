@@ -15,7 +15,7 @@ Field names differ across mirrors, so the schema is DETECTED and printed. If
 detection fails it dumps the columns and first example instead of guessing.
 
 Usage:
-  python prep_refcoco.py --dataset refcocog --split validation --limit 800 \
+  python -m AnswerMap.prep.prep_refcoco --dataset refcocog --split validation --limit 800 \
       --out_dir data/refcocog --cache_dir $CD
 """
 import argparse, json, os
@@ -136,7 +136,7 @@ def main():
     print(f"[prep] images -> {img_dir}")
     print("\nSPOT-CHECK a couple of boxes vs the referring expression before "
           "trusting the box_format (COCO=xywh; if boxes look shifted, try --box_format xyxy).")
-    print(f"\nnext (Test 1):\n  python exp_agreement.py --data {path} "
+    print(f"\nnext (Test 1):\n  python -m AnswerMap.eval.exp_agreement --data {path} "
           f"--images_dir {img_dir} \\\n"
           f"      --methods probe1,probeMG,attn_best,attn_raw,attn_rollout,"
           f"occlusion,random --Ks 3,5 --cache_dir <hf>")

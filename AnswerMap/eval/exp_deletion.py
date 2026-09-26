@@ -38,7 +38,7 @@ Data (either):
   open-ended:  {image, question, answers:[...]}   <- textvqa, vqav2
 
 Usage (recommended -- TextVQA, the localized-answer testbed):
-  python exp_deletion.py --data data/textvqa/data.jsonl \
+  python -m AnswerMap.eval.exp_deletion --data data/textvqa/data.jsonl \
       --images_dir data/textvqa/images --cache_dir $CD --limit 400
 """
 import argparse, json, os, re
@@ -170,8 +170,8 @@ def main():
     # probe reads only logits, so eager does not change its result.
     attn = "eager" if any(m in ATTN for m in methods) else "sdpa"
 
-    from answermap import Config, VLM, probe as probe_op, load_image
-    from baselines import loc_heads, raw_attention, attention_rollout
+    from AnswerMap.answermap import Config, VLM, probe as probe_op, load_image
+    from AnswerMap.baselines import loc_heads, raw_attention, attention_rollout
     cfg = Config(model_name=a.model_name, cache_dir=a.cache_dir, K=a.K,
                  max_side=a.max_side, min_pixels=a.min_pixels, attn=attn)
     vlm = VLM(cfg)
@@ -186,13 +186,13 @@ def main():
             M = np.outer(np.asarray(res["c_row"]), np.asarray(res["c_col"]))
             return to_K(M, a.K), float(M.max())
         if name == "probeMG":
-            from answermap import multigrid_map
+            from AnswerMap.answermap import multigrid_map
             Ks = tuple(int(x) for x in a.Ks.split(","))
             M = multigrid_map(vlm, small, q, cfgp, Ks, "product")
             Mk = to_K(M, a.K)
             return Mk, float(Mk.max())
         from functools import partial
-        from baselines import chefer_relevancy
+        from AnswerMap.baselines import chefer_relevancy
         fn = {"loc_heads": loc_heads, "raw_attention": raw_attention,
               "raw_attention_best": partial(raw_attention, layer=a.attn_layer),
               "rollout": attention_rollout, "tmm": chefer_relevancy}[name]

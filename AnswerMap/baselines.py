@@ -22,7 +22,7 @@ import re
 import numpy as np
 from PIL import Image
 
-from answermap import load_image, GENERATE_PROMPT
+from AnswerMap.answermap import load_image, GENERATE_PROMPT
 
 
 # The backbone's NATIVE grounding prompt and coordinate convention. Getting
@@ -145,7 +145,7 @@ def chefer_relevancy(vlm, image, query, cfg, point_mode="centroid", start_layer=
         report the baseline at its best.
     Needs gradients + eager attention (white-box). One forward + one backward."""
     import torch
-    from answermap import YESNO_PROMPT
+    from AnswerMap.answermap import YESNO_PROMPT
     if isinstance(image, str):
         image = load_image(image, cfg.max_side)
     model, processor = vlm.model, vlm.processor
@@ -309,7 +309,7 @@ def attention_rollout(vlm, image, query, cfg, point_mode="centroid"):
 
 
 def _point_from_map(M, image, mode):
-    from answermap import load_image
+    from AnswerMap.answermap import load_image
     img = load_image(image, 10**9) if isinstance(image, str) else image
     W, H = img.size
     Hg, Wg = M.shape

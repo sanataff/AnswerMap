@@ -25,7 +25,7 @@ Protocol per row:
      corruptions, plus the two detector AUCs.
 
 Usage:
-  python exp_hallucination.py --data data/pope/data.jsonl \
+  python -m AnswerMap.eval.exp_hallucination --data data/pope/data.jsonl \
       --images_dir data/pope/images --cache_dir $CD --limit 0 \
       --out runs/halluc_pope.json
 """
@@ -62,8 +62,8 @@ def main():
     ap.add_argument("--out", default="runs/halluc_pope.json")
     a = ap.parse_args()
 
-    from answermap import Config, VLM, probe as probe_op, load_image
-    from exp_deletion import corrupt_cells, top_mass_cells, random_cells
+    from AnswerMap.answermap import Config, VLM, probe as probe_op, load_image
+    from AnswerMap.eval.exp_deletion import corrupt_cells, top_mass_cells, random_cells
 
     cfg = Config(model_name=a.model_name, cache_dir=a.cache_dir, K=a.K,
                  max_side=a.max_side, min_pixels=a.min_pixels)

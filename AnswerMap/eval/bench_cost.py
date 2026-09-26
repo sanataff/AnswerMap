@@ -14,9 +14,9 @@ Methods and their access class:
   tmm        1 forward + 1 backward, eager                   (white-box)
 
 Usage:
-  python bench_cost.py --data data/refcocog/refcocog.jsonl \
+  python -m AnswerMap.eval.bench_cost --data data/refcocog/refcocog.jsonl \
       --images_dir data/refcocog/images --n 20 --cache_dir $CD
-  python bench_cost.py ... --model_name Qwen/Qwen3-VL-30B-A3B-Instruct \
+  python -m AnswerMap.eval.bench_cost ... --model_name Qwen/Qwen3-VL-30B-A3B-Instruct \
       --groups blackbox            # at 30B, white-box may OOM -- that IS the result
 """
 import argparse, json, os, time
@@ -42,8 +42,8 @@ def main():
 
     import torch
     from functools import partial
-    from answermap import Config, VLM, probe as probe_op, load_image
-    import baselines as B
+    from AnswerMap.answermap import Config, VLM, probe as probe_op, load_image
+    import AnswerMap.baselines as B
 
     rows = [json.loads(l) for l in open(a.data, encoding="utf-8") if l.strip()][:a.n]
     samples = [(load_image(os.path.join(a.images_dir, r["image"]), a.side),
