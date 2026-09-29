@@ -3,7 +3,7 @@
 
 <div align="center">
 
-[![arXiv](https://img.shields.io/badge/arXiv-TBD-b31b1b)](https://arxiv.org/abs/TBD)
+[![arXiv](https://img.shields.io/badge/arXiv-2609.35247-b31b1b)](https://arxiv.org/abs/2609.35247)
 [![Colab Demo](https://img.shields.io/badge/Colab-Demo-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/demo.ipynb)
 
 An interactive demo is available on Colab. **[Try it here](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/demo.ipynb)**.
@@ -170,13 +170,13 @@ Every script takes `--model_name` to run the other backbones in the table above.
 If you use AnswerMap in your research, please cite:
 
 ```bibtex
-@misc{adam2026answermap,
-      title={AnswerMap: Faithful Black-Box Spatial Interpretability for Vision Language Models},
-      author={Fardows Adam and Duaa M. Tahir and Lama Alamoudi and Sana Ammar and Atheer A. Alboloshi and Jory Albluey and Mohamed Eltahir and Tanveer Hussain},
+@misc{eltahir2026answermapfaithfulspatialinterpretability,
+      title={AnswerMap: Faithful Spatial Interpretability of VLMs from Answer Posteriors}, 
+      author={Mohamed Eltahir and Fardows Adam and Duaa M. Tahir and Lama Alamoudi and Sana Ammar and Atheer A. Alboloshi and Jory Albluey and Tanveer Hussain and Naeemullah Khan},
       year={2026},
-      eprint={TBD},
+      eprint={2609.35247},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/TBD},
+      url={https://arxiv.org/abs/2609.35247}, 
 }
 ```
