@@ -29,7 +29,7 @@ An interactive demo is available on Colab. **[Try it here](https://colab.researc
 
 
 ## News
-- [2026-09] Code released. arXiv preprint coming soon.
+- [2026-09] Code released. arXiv preprint released.
 ---
 
 
