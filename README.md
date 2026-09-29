@@ -1,12 +1,13 @@
-# AnswerMap: Faithful Black-Box Spatial Interpretability for Vision Language Models
+# AnswerMap: Faithful Spatial Interpretability of Vision Language Models from Answer Posteriors
 **Authors:** [Mohamed Eltahir](https://www.linkedin.com/in/mohammad2012191/), [Fardows Adam](https://www.linkedin.com/in/fardows-ahmed/), [Duaa M. Tahir](https://www.linkedin.com/in/duaatahir5/), [Lama Alamoudi](https://www.linkedin.com/in/lama-amoudi/), [Sana Ammar](https://www.linkedin.com/in/sana-ammar-b0491a1b2/), [Atheer A. Alboloshi](https://www.linkedin.com/in/atheer-abdulqader-alboloshi-0a42683b4/), [Jory Albluey](https://www.linkedin.com/in/jory-alsuhaimi-87a802407/), [Tanveer Hussain](https://www.linkedin.com/in/tinu445/) and [Naeemullah Khan](https://www.linkedin.com/in/profkhan/).
 
 <div align="center">
 
 [![arXiv](https://img.shields.io/badge/arXiv-2609.35247-b31b1b)](https://arxiv.org/abs/2609.35247)
-[![Colab Demo](https://img.shields.io/badge/Colab-Demo-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/demo.ipynb)
+[![Colab: Open-Source Models](https://img.shields.io/badge/Colab-Open--Source%20Models-F9AB00?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/demo.ipynb)
+[![Colab: GPT-6 via API](https://img.shields.io/badge/Colab-GPT--6%20via%20API-412991?logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/gpt6_demo.ipynb)
 
-An interactive demo is available on Colab. **[Try it here](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/demo.ipynb)**.
+Try AnswerMap on Colab: **[open-source models](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/demo.ipynb)** (free GPU), or **[GPT-6 through the API](https://colab.research.google.com/github/sanataff/AnswerMap/blob/main/gpt6_demo.ipynb)** (bring your OpenAI key).
 
 </div>
 
